@@ -3,6 +3,11 @@
     "myFunc": {
       "file": "example-function.js",
       "secrets": []
+    },
+    "chatbees": {
+      "file": "chatbees.js",
+      "secrets": []
     }
   }
 }
+

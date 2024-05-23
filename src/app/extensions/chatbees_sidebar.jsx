@@ -24,15 +24,17 @@ hubspot.extend(({ context, runServerlessFunction, actions }) => (
 // Define the Extension component, taking in runServerless, context, & sendAlert as props
 const Extension = ({ context, runServerless, sendAlert, openIframe }) => {
   const [text, setText] = useState("");
+  const [response, setResponse] = useState("");
 
   // Call serverless function to execute with parameters.
   // The `myFunc` function name is configured inside `serverless.json`
   const handleClick = async () => {
     const { response } = await runServerless({
-      name: "chatWithBees",
-      parameters: { text: text },
+      name: "chatbees",
+      parameters: { msg: text, text },
     });
     sendAlert({ message: response });
+    setResponse(response);
   };
 
   return (
@@ -46,6 +48,9 @@ const Extension = ({ context, runServerless, sendAlert, openIframe }) => {
         response back.
       </Text>
 
+      <Text>Chatbee says:</Text>
+      <Text>{response}</Text>
+      <Divider />
       <Flex direction="row" align="end" gap="small">
         <Input name="text" label="Send" onInput={(t) => setText(t)} />
         <Button type="submit" onClick={handleClick}>
