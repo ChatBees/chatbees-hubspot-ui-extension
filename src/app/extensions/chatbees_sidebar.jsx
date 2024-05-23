@@ -9,16 +9,15 @@ import {
   Flex,
   hubspot,
 } from "@hubspot/ui-extensions";
+import { ChatBeesLogo } from "./chatbees_logo.jsx";
 import ChatBeesComponent from "./chatbees";
 
-import { ChatBeesLogo } from "./chatbees_logo.jsx";
 // Define the extension to be run within the Hubspot CRM
 hubspot.extend(({ context, runServerlessFunction, actions }) => (
   <Extension
     context={context}
     runServerless={runServerlessFunction}
     sendAlert={actions.addAlert}
-    openIframe={actions.openIframeModal}
   />
 ));
 
@@ -26,21 +25,11 @@ hubspot.extend(({ context, runServerlessFunction, actions }) => (
 const Extension = ({ context, runServerless, sendAlert, openIframe }) => {
   const [text, setText] = useState("");
 
-  const openChat = () => {
-    openIframe({
-      uri: "http://localhost:3001/chatbees_demo.html", // this is a relative link. Some links will be blocked since they don't allow iframing
-      height: 1000,
-      width: 1000,
-      title: "Wikipedia in an iframe",
-      flush: true,
-    });
-  };
-
   // Call serverless function to execute with parameters.
   // The `myFunc` function name is configured inside `serverless.json`
   const handleClick = async () => {
     const { response } = await runServerless({
-      name: "myFunc",
+      name: "chatWithBees",
       parameters: { text: text },
     });
     sendAlert({ message: response });
@@ -49,11 +38,6 @@ const Extension = ({ context, runServerless, sendAlert, openIframe }) => {
   return (
     <>
       <ChatBeesLogo />
-      <Box>
-        <Button type="submit" onClick={openChat}>
-          Open ChatBees
-        </Button>
-      </Box>
       <Text>
         <Text format={{ fontWeight: "bold" }}>Chat bees are working here!</Text>
         Congratulations, {context.user.firstName}! You just deployed your first

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   Divider,
   Link,
@@ -11,10 +11,10 @@ import {
 
 const ChatBeesComponent = () => {
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://www.chatbees.ai/embed.js';
-    script.setAttribute('aid', 'WELM90Y4');
-    script.setAttribute('colname', 'ng-doc');
+    const script = document.createElement("script");
+    script.src = "https://www.chatbees.ai/embed.js";
+    script.setAttribute("aid", "WELM90Y4");
+    script.setAttribute("colname", "ng-doc");
     script.async = true;
 
     document.body.appendChild(script);
@@ -26,12 +26,9 @@ const ChatBeesComponent = () => {
 
   return (
     <>
-      <Text>
-        hi there
-      </Text>
+      <Text>hi there</Text>
     </>
   );
 };
 
 export default ChatBeesComponent;
-
