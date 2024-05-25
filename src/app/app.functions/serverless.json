@@ -5,7 +5,7 @@
       "secrets": []
     },
     "chatbees": {
-      "file": "chatbees.js",
+      "file": "chatbees-function.js",
       "secrets": []
     }
   }
