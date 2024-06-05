@@ -4,11 +4,18 @@ const hubspotClient = new hubspot.Client({
   accessToken: process.env["PRIVATE_APP_ACCESS_TOKEN"],
 });
 
+let hubDBTablesCache = null;
+let hubDBTableRowsCache = {};
+
 // Function to get all tables from a HubDB
 async function fetchHubDBTables() {
+  if (hubDBTablesCache) {
+    return hubDBTablesCache;
+  }
   try {
     const apiResponse = await hubspotClient.cms.hubdb.tablesApi.getAllTables();
-    return apiResponse.results;
+    hubDBTablesCache = apiResponse.results;
+    return hubDBTablesCache;
   } catch (error) {
     console.error("Error fetching HubDB tables:", error);
   }
@@ -16,9 +23,13 @@ async function fetchHubDBTables() {
 
 // Function to fetch rows from a HubDB table
 async function fetchHubDBTableRows(tableId) {
+  if (hubDBTableRowsCache[tableId]) {
+    return hubDBTableRowsCache[tableId];
+  }
   try {
     const apiResponse = await hubspotClient.cms.hubdb.rowsApi.getTableRows(tableId);
-    return apiResponse.results;
+    hubDBTableRowsCache[tableId] = apiResponse.results;
+    return hubDBTableRowsCache[tableId];
   } catch (error) {
     console.error("Error fetching HubDB table rows:", error);
   }
