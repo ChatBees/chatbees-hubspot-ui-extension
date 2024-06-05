@@ -1,7 +1,7 @@
-const hubspot = require('@hubspot/api-client');
+const hubspot = require("@hubspot/api-client");
 
 const hubspotClient = new hubspot.Client({
-  accessToken: process.env['PRIVATE_APP_ACCESS_TOKEN']
+  accessToken: process.env["PRIVATE_APP_ACCESS_TOKEN"],
 });
 
 // Function to get all tables from a HubDB
@@ -10,7 +10,7 @@ async function fetchHubDBTables() {
     const apiResponse = await hubspotClient.cms.hubdb.tablesApi.getAllTables();
     return apiResponse.results;
   } catch (error) {
-    console.error('Error fetching HubDB tables:', error);
+    console.error("Error fetching HubDB tables:", error);
   }
 }
 
@@ -18,16 +18,17 @@ async function fetchHubDBTables() {
 async function fetchHubDBTableRows(tableId) {
   try {
     const apiResponse = await hubspotClient.cms.hubdb.rowsApi.getTableRows(tableId);
-    return apiResponse.results[0].values;
+    return apiResponse.results;
   } catch (error) {
-    console.error('Error fetching HubDB table rows:', error);
+    console.error("Error fetching HubDB table rows:", error);
   }
 }
+
 exports.main = async (context = {}) => {
 
   const hubDBTables = await fetchHubDBTables();
-  const { id } = hubDBTables.find(({name}) => name === "chatbees");
-  const { aid, collection_name } = await fetchHubDBTableRows(id);
+  const { id } = hubDBTables.find(({ name }) => name === "chatbees");
+  const { aid, collection_name, api_key } = (await fetchHubDBTableRows(id))?.[0]?.values || {};
 
   const { msg } = context.parameters;
 
@@ -41,15 +42,20 @@ exports.main = async (context = {}) => {
 
   const apiUrl = "https://" + aid + ".us-west-2.aws.chatbees.ai/docs/ask";
 
-  let response = `This is coming from chatbees function! You said: ${msg}`;
+  let response;
+
+  const headers = {
+    // If the collection does not allow public read, please add your api-key here.
+    "Content-Type": "application/json",
+  };
+
+  if (api_key) {
+    headers ["api-key"] = api_key;
+  }
 
   response = await fetch(apiUrl, {
     method: "POST",
-    headers: {
-      // If the collection does not allow public read, please add your api-key here.
-      // "api-key": "Replace with your API Key",
-      "Content-Type": "application/json",
-    },
+    headers,
     body: jsonData,
   })
     .then((response) => {
