@@ -1,0 +1,19 @@
+{
+  "name": "ChatBees Extension",
+  "description": "Comprehensive project showcasing ChatBees UI Extension",
+  "uid": "chatbees_extension",
+  "scopes": [
+    "crm.objects.contacts.read",
+    "crm.objects.contacts.write"
+  ],
+  "public": false,
+  "extensions": {
+    "crm": {
+      "cards": [
+        {
+          "file": "extensions/SideBar.json"
+        }
+      ]
+    }
+  }
+}

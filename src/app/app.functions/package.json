@@ -1,0 +1,13 @@
+{
+  "name": "chatbees-functions",
+  "version": "0.1.0",
+  "author": "ChatBees",
+  "license": "MIT",
+  "dependencies": {
+    "@hubspot/api-client": "^7.0.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.5"
+  }
+}

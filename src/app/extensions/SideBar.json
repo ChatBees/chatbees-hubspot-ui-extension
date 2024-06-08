@@ -1,0 +1,19 @@
+{
+  "type": "crm-card",
+  "data": {
+    "title": "ChatBees",
+    "uid": "chatbees_sidebar_card",
+    "location": "crm.record.sidebar",
+    "module": {
+      "file": "SideBar.tsx"
+    },
+    "objectTypes": [
+      {
+        "name": "contacts"
+      },
+      {
+        "name": "tickets"
+      }
+    ]
+  }
+}
