@@ -11,7 +11,7 @@ import {
 } from "@hubspot/ui-extensions";
 import ChatBeesComponent from "./chatbees";
 
-import { ChatBeesLogo } from "./chatbees_logo.jsx";
+import ChatBeesLogo from "./common/Logo";
 // Define the extension to be run within the Hubspot CRM
 hubspot.extend(({ context, runServerlessFunction, actions }) => (
   <Extension

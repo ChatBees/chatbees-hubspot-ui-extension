@@ -4,10 +4,21 @@
       "file": "example-function.js",
       "secrets": []
     },
-    "chatbees": {
-      "file": "chatbees-function.js",
-      "secrets": []
+    "checkSecrets": {
+      "file": "checkSecrets.js",
+      "secrets": [
+        "CHATBEES_AID",
+        "CHATBEES_COLLECTION_NAME",
+        "CHATBEES_API_KEY"
+      ]
+    },
+    "askQuestion": {
+      "file": "askQuestion.js",
+      "secrets": [
+        "CHATBEES_AID",
+        "CHATBEES_COLLECTION_NAME",
+        "CHATBEES_API_KEY"
+      ]
     }
   }
 }
-

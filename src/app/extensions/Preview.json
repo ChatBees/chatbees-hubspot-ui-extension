@@ -1,11 +1,11 @@
 {
   "type": "crm-card",
   "data": {
-    "title": "ChatBee's Sidebar",
-    "uid": "chatbees_sidebar",
-    "location": "crm.record.sidebar",
+    "title": "Ask ChatBees",
+    "uid": "chatbees_preview",
+    "location": "crm.preview",
     "module": {
-      "file": "chatbees_sidebar.jsx"
+      "file": "SideBar.tsx"
     },
     "objectTypes": [
       {

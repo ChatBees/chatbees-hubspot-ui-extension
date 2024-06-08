@@ -1,9 +1,9 @@
 {
-  "name": "Get started App",
-  "description": "This is an example private app that shows a custom card on the Contact record tab built with React-based frontend. This card demonstrates a simple handshake with HubSpot's serverless backend.",
+  "name": "ChatBees Extension",
+  "description": "ChatBees Card for ",
   "uid": "get_started_app",
   "scopes": [
-    "crm.objects.contacts.read", 
+    "crm.objects.contacts.read",
     "crm.objects.contacts.write",
     "hubdb"
   ],
@@ -15,13 +15,12 @@
           "file": "extensions/example-card.json"
         },
         {
-          "file": "extensions/chatbees-sidebar.json"
+          "file": "extensions/SideBar.json"
         },
         {
-          "file": "extensions/chatbees-preview.json"
+          "file": "extensions/Preview.json"
         }
       ]
     }
   }
 }
-
