@@ -79,7 +79,7 @@ const Extension = ({ runServerlessFunction }) => {
                 label={''}
                 placeholder="Ask me anything..."
                 value={question}
-                rows={3}
+                rows={5}
                 resize="none"
                 required={true}
                 onInput={setQuestion}
