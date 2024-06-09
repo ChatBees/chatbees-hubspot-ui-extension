@@ -22,18 +22,19 @@ exports.main = async ({ parameters }) => {
   })
     .then((response) => {
       if (response.ok) {
-        const data = response.json();
-        data.refs = uniqBy(
-          data.refs?.filter(({ doc_name }) => doc_name?.match(/^https?:\/\//)),
-          'doc_name',
-        ).slice(0, 3);
-
-        return data;
+        return response.json();
       }
 
       throw new Error(
         `status: ${response.status}, error: ${response.statusText}`,
       );
+    }).then((data) => {
+      data.refs = uniqBy(
+        data.refs?.filter(({ doc_name }) => doc_name?.match(/^https?:\/\//)),
+        'doc_name',
+      ).slice(0, 3);
+
+      return data;
     })
     .catch((error) => {
       console.error('Error:', error);
