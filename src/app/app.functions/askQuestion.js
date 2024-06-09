@@ -28,11 +28,12 @@ exports.main = async ({ parameters }) => {
       throw new Error(
         `status: ${response.status}, error: ${response.statusText}`,
       );
-    }).then((data) => {
+    })
+    .then((data) => {
       data.refs = uniqBy(
         data.refs?.filter(({ doc_name }) => doc_name?.match(/^https?:\/\//)),
         'doc_name',
-      ).slice(0, 3);
+      ).slice(0, process.env['CHATBEES_MAX_REFS'] || 3);
 
       return data;
     })
