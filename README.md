@@ -37,6 +37,8 @@ Enter the secret after each command below when prompted:
 hs secrets add CHATBEES_AID
 hs secrets add CHATBEES_COLLECTION_NAME
 hs secrets add CHATBEES_API_KEY
+hs secrets add CHATBEES_MAX_REFS # optional, defaults to 3
+hs secrets list # list all secrets
 ```
 
 ### Upload this Extension to your HubSpot Account
