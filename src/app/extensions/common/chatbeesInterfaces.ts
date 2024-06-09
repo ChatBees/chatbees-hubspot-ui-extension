@@ -11,10 +11,6 @@ export interface QuestionAnswer {
   conversation_id: string;
 }
 
-export interface AskQuestionExecutionResult {
-  response: QuestionAnswer;
-}
-
 export interface ConversationItem {
   question: string;
   response?: QuestionAnswer;

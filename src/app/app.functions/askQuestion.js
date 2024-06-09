@@ -37,7 +37,4 @@ exports.main = async ({ parameters }) => {
 
       return data;
     })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
 };

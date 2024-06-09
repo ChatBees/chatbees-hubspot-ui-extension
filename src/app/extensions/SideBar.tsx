@@ -1,29 +1,30 @@
 import {
   Accordion,
-  Box,
   Button,
   ErrorState,
+  ExtensionPointApi,
   Flex,
   Link,
   List,
   LoadingSpinner,
+  ServerlessExecutionStatus,
   Text,
   TextArea,
   hubspot,
 } from "@hubspot/ui-extensions";
 import React, { useEffect, useState } from "react";
 import ChatBeesLogo from "./common/Logo";
-import {
-  AskQuestionExecutionResult,
-  ConversationItem,
-} from "./common/chatbeesInterfaces";
+import { ConversationItem, QuestionAnswer } from "./common/chatbeesInterfaces";
 
 // Define the extension to be run within the Hubspot CRM
-hubspot.extend<"crm.record.sidebar">(({ runServerlessFunction }) => (
-  <Extension runServerlessFunction={runServerlessFunction} />
+hubspot.extend<"crm.record.sidebar">(({ runServerlessFunction, actions }) => (
+  <Extension runServerlessFunction={runServerlessFunction} actions={actions} />
 ));
 
-const Extension = ({ runServerlessFunction }) => {
+const Extension = ({
+  runServerlessFunction,
+  actions: { addAlert },
+}: Partial<ExtensionPointApi<"crm.record.sidebar">>) => {
   const [initializing, setInitializing] = useState(true);
   const [initialized, setInitialized] = useState(false);
   const [question, setQuestion] = useState("");
@@ -36,9 +37,12 @@ const Extension = ({ runServerlessFunction }) => {
 
     runServerlessFunction({
       name: "checkSecrets",
-    }).then(({ response }) => {
+    }).then((result) => {
       setInitializing(false);
-      setInitialized(response);
+
+      if (result.status === ServerlessExecutionStatus.Success) {
+        setInitialized(result.response as boolean);
+      }
     });
   };
 
@@ -50,15 +54,28 @@ const Extension = ({ runServerlessFunction }) => {
 
     setThinking(true);
 
-    const { response }: AskQuestionExecutionResult =
-      await runServerlessFunction({
-        name: "askQuestion",
-        parameters: { question, conversationId },
-      });
+    const result = await runServerlessFunction({
+      name: "askQuestion",
+      parameters: { question, conversationId },
+    });
 
     setThinking(false);
 
-    setConversationId(response.conversation_id);
+    if (result.status === ServerlessExecutionStatus.Error) {
+      addAlert({
+        type: "danger",
+        message: result.message,
+        title: `ChatBees failed to answer your question "${question}"`,
+      });
+
+      // Clear the thinking conversation item
+      setConversation(conversation.filter(({ response }) => !!response));
+
+      return;
+    }
+
+    const response = result.response as unknown as QuestionAnswer;
+    setConversationId(response?.conversation_id);
     setConversation([
       { question, response },
       ...conversation.filter(({ response }) => !!response),
