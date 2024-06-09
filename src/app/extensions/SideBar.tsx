@@ -89,7 +89,7 @@ const Extension = ({ runServerlessFunction }) => {
             onInput={setQuestion}
           />
           <Button
-            disabled={!question || thinking}
+            disabled={!question.replace(/\s/g, "") || thinking}
             variant="primary"
             size="small"
             type="submit"
