@@ -21,6 +21,9 @@ Before you can utilize this project, there are a few prerequisites that need to 
       projects. Currently, developer projects are
       available [in public beta under "CRM Development Tools"](https://app.hubspot.com/l/whats-new/betas).
 
+
+![Opt in CRM Development Tools](opt in CRM development tools.png)
+
 ## Usage
 
 ### Initialize HubSpot Account
