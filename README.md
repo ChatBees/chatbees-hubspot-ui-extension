@@ -6,25 +6,33 @@ This project provides a comprehensive demonstration of the ChatBees Chatbot inte
 
 Before you can utilize this project, there are a few prerequisites that need to be met.
 
-* ChatBees Prerequisites
-    - An active [ChatBees](https://chatbees.ai) account is required.
-    - A [collection](https://docs.chatbees.ai/chatbees/web-app-references/manage-collections) with
-      relevant [data sources](https://docs.chatbees.ai/chatbees/web-app-references/manage-collections/data-sources)
-      should be added.
-    - An [API key](https://docs.chatbees.ai/chatbees/web-app-references/api-keys) is needed for secure access to the
-      collection.
+### ChatBees Prerequisites
+* An active [ChatBees](https://chatbees.ai) account is required.
+* A [collection](https://docs.chatbees.ai/chatbees/web-app-references/manage-collections) with
+relevant [data sources](https://docs.chatbees.ai/chatbees/web-app-references/manage-collections/data-sources)
+should be added.
+* An [API key](https://docs.chatbees.ai/chatbees/web-app-references/api-keys) is needed for secure access to the
+collection.
 
-* HubSpot Prerequisites
-    - An active HubSpot account is required.
-    - The [HubSpot CLI](https://www.npmjs.com/package/@hubspot/cli) should be installed and configured.
-    - A Sales Hub or Service Hub Enterprise subscription or a developer test account. If necessary, create developer
-      projects. Currently, developer projects are
-      available [in public beta under "CRM Development Tools"](https://app.hubspot.com/l/whats-new/betas).
+### HubSpot Prerequisites
+* An active HubSpot account is required.
+* The [HubSpot CLI](https://www.npmjs.com/package/@hubspot/cli) should be installed.
+```bash
+npm install -g @hubspot/cli
+```
+* A Sales Hub or Service Hub Enterprise subscription.
 
+Currently, HubSpot UI Extention is in beta. You need to explicitly join beta product.
+1. Go to [Product Updates](https://app.hubspot.com/l/whats-new/betas) page.
+2. Click "In beta", input "ui extention" in the search bar, and click "Join Beta" of "Add custom cards (UI extensions)..."
 
-![Opt in CRM Development Tools](opt in CRM development tools.png)
+#### Developer Account
+If you don't have Enterprise subscription, you can create a developer test account to try it. Follow below steps:
+1. Go to [HubSpot Developers](https://developers.hubspot.com/), and click "Create a developer account".
+2. Click "Create App Developer account", and follow the steps.
+3. Follow the steps above to Join Beta for UI Extention.
 
-## Usage
+## Install the UI Extention
 
 ### Initialize HubSpot Account
 
