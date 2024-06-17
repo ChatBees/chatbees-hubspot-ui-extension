@@ -24,7 +24,9 @@ npm install -g @hubspot/cli
 
 Currently, HubSpot UI Extention is in beta. You need to explicitly join beta product.
 1. Go to [Product Updates](https://app.hubspot.com/l/whats-new/betas) page.
-2. Click "In beta", input "ui extention" in the search bar, and click "Join Beta" of "Add custom cards (UI extensions)..."
+2. Click "In beta", input "crm development" in the search bar, and click "Join Beta" of "CRM development tools to build UI extensio..."
+
+![Opt in CRM Development Tools](https://github.com/ChatBees/chatbees-hubspot-ui-extension/blob/main/opt%20in%20CRM%20development%20tools.png)
 
 #### Developer Account
 If you don't have Enterprise subscription, you can create a developer test account to try it. Follow below steps:
